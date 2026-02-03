@@ -1,4 +1,3 @@
-
 syntax = "proto3";
 package stock_trading;
 option java_multiple_files = true;
@@ -8,6 +7,9 @@ option java_outer_classname = "StockTradingProto";
 service StockTradingService {
   // UNARY - RPC -> get current stock price
   rpc getStockPrice(StockRequest) returns (StockResponse);
+
+  // server streaming
+  rpc subscribeStockPrice(StockRequest) returns (stream StockResponse);
 }
 
 message StockRequest {
@@ -15,7 +17,7 @@ message StockRequest {
 }
 
 message StockResponse {
-  string stock_symbol  = 1;
+  string stock_symbol = 1;
   double price = 2;
   string timestamp = 3;
 }

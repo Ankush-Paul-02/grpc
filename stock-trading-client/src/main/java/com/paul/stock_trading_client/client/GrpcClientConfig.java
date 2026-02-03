@@ -10,11 +10,11 @@ import com.paul.grpc.StockTradingServiceGrpc;
 public class GrpcClientConfig {
 
     @Bean
-    StockTradingServiceGrpc.StockTradingServiceBlockingStub stockStub(
+    public StockTradingServiceGrpc.StockTradingServiceStub stockAsyncStub(
             GrpcChannelFactory channelFactory
     ) {
         Channel channel = channelFactory.createChannel("default-channel");
-        return StockTradingServiceGrpc.newBlockingStub(channel);
+
+        return StockTradingServiceGrpc.newStub(channel);
     }
 }
-
